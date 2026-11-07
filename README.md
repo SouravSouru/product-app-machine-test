@@ -43,7 +43,9 @@ Screen flow:
 
 Splash (3 sec) -> Product list -> Product details
 
-Tap a product opens details with `go_router` and passes the product as extra so the page shows immediately. Details API runs in parallel to refresh data.
+After splash, list screen calls the products API and shows shimmer till data comes. Scroll down for next page, pull to refresh to reload.
+
+Tap a product opens details. We pass the product so UI shows fast, and details API also runs to get fresh data.
 
 UI -> bloc -> use case -> repository -> DummyJSON.  
 On API failure, repository returns cached data if we have it.
