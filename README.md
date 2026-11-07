@@ -1,17 +1,63 @@
-# product_app
+# Product App
 
-A new Flutter project.
+Machine test app. Shows products from DummyJSON and opens a details page when you tap one.
 
-## Getting Started
+API: https://dummyjson.com/docs/products
 
-This project is a starting point for a Flutter application.
+## Setup
 
-A few resources to get you started if this is your first Flutter project:
+Need Flutter 3.12+.
 
-- [Learn Flutter](https://docs.flutter.dev/get-started/learn-flutter)
-- [Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Flutter learning resources](https://docs.flutter.dev/reference/learning-resources)
+```bash
+flutter pub get
+dart run build_runner build --delete-conflicting-outputs
+flutter run
+```
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+`*.g.dart` files are gitignored, so run build_runner after clone.
+
+## Test execution
+
+```bash
+flutter test
+```
+
+Tests use fake repositories. They do not call the live API.
+
+## Architecture overview
+
+Clean architecture with feature folders.
+
+```
+lib/
+  core/          # dio, get_it, router, shared widgets
+  features/
+    products/
+      data/          # retrofit api, shared_preferences cache, repository
+      domain/        # entities, repository contract, use cases
+      presentation/  # blocs + list/details screens
+    splash/
+```
+
+Screen flow:
+
+Splash (3 sec) -> Product list -> Product details
+
+Tap a product opens details with `go_router` and passes the product as extra so the page shows immediately. Details API runs in parallel to refresh data.
+
+UI -> bloc -> use case -> repository -> DummyJSON.  
+On API failure, repository returns cached data if we have it.
+
+## Screenshots
+
+### Splash
+![Splash](doc/screenshots/splash_screen.png)
+
+### Product list loading
+![Product list loading](doc/screenshots/product_list_loading.png)
+
+### Product list
+![Product list](doc/screenshots/product_list_screen.png)
+
+### Product details
+![Product details](doc/screenshots/product_details_screen.png)
