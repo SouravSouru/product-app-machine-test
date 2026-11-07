@@ -50,14 +50,10 @@ On API failure, repository returns cached data if we have it.
 
 ## Screenshots
 
-### Splash
-![Splash](doc/screenshots/splash_screen.png)
+| Splash | List loading |
+| --- | --- |
+| ![Splash](doc/screenshots/splash_screen.png) | ![Loading](doc/screenshots/product_list_loading.png) |
 
-### Product list loading
-![Product list loading](doc/screenshots/product_list_loading.png)
-
-### Product list
-![Product list](doc/screenshots/product_list_screen.png)
-
-### Product details
-![Product details](doc/screenshots/product_details_screen.png)
+| Product list | Product details |
+| --- | --- |
+| ![List](doc/screenshots/product_list_screen.png) | ![Details](doc/screenshots/product_details_screen.png) |
